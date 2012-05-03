@@ -1,0 +1,26 @@
+From a85b174f7cdfb1be9d3aef0e266f9daf8fdbe3c2 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
+Date: Fri, 17 Feb 2012 13:06:42 +0200
+Subject: [PATCH] Disable unconditional hardfloat on ARM
+
+This patch is meant to be applied only on softfp ARM targets.
+---
+ src/v8/v8.pri |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/src/v8/v8.pri b/src/v8/v8.pri
+index 530b2a7..330d764 100644
+--- a/src/v8/v8.pri
++++ b/src/v8/v8.pri
+@@ -149,7 +149,7 @@ SOURCES += \
+ 
+ equals(V8_TARGET_ARCH, arm) {
+ DEFINES += V8_TARGET_ARCH_ARM
+-DEFINES += USE_EABI_HARDFLOAT=1 CAN_USE_VFP_INSTRUCTIONS
++#DEFINES += USE_EABI_HARDFLOAT=1 CAN_USE_VFP_INSTRUCTIONS
+ SOURCES += \
+     $$V8SRC/arm/builtins-arm.cc \
+     $$V8SRC/arm/code-stubs-arm.cc \
+-- 
+1.7.9
+

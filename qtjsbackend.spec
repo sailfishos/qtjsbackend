@@ -1,12 +1,13 @@
-%define _qtmodule_snapshot_version 5~5.0.0~alpha1
+%define _qtmodule_snapshot_version 5.0.0-beta1
 Name:           qt5-qtjsbackend
 Summary:        Qt Javascript backend
-Version:        %{_qtmodule_snapshot_version}
+Version:        5.0.0~beta1
 Release:        1%{%dist}
 Group:          Qt/Qt
 License:        LGPLv2.1 with exception or GPLv3
 URL:            http://qt.nokia.com
-Source0:        %{name}-%{version}.tar.gz
+#Source0:        %{name}-%{version}.tar.xz
+Source0:        qtjsbackend-opensource-src-%{_qtmodule_snapshot_version}.tar.xz
 Patch50:        0001-Disable-unconditional-hardfloat-on-ARM.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qmake
@@ -50,7 +51,7 @@ This package contains the V8 Javascript backend development files
 #### Build section
 
 %prep
-%setup -q -n %{name}
+%setup -q -n qtjsbackend-opensource-src-%{_qtmodule_snapshot_version}
 # XXX: If building for ARM without hardfp support, apply patch
 %ifarch arm7l
 %patch50 -p1
@@ -69,6 +70,10 @@ rm -rf %{buildroot}
 rm -f %{buildroot}/%{_libdir}/*.la
 # XXX: when enabled in build, fix wrong path in prl files
 #
+# We don't need qt5/Qt/
+rm -rf %{buildroot}/%{_includedir}/qt5/Qt
+
+
 %fdupes %{buildroot}/%{_includedir}
 
 
@@ -95,9 +100,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 
 %files -n qt5-qtv8-devel
 %defattr(-,root,root,-)
-%{_includedir}/qt5/Qt/QtV8
 %{_includedir}/qt5/QtV8/
-%{_libdir}/cmake/Qt5V8/
 %{_libdir}/libQtV8.prl
 %{_libdir}/libQtV8.so
 %{_libdir}/pkgconfig/QtV8.pc

@@ -1,7 +1,7 @@
-%define _qtmodule_snapshot_version 5.0.0-beta1
+%define _qtmodule_snapshot_version 5.0.0
 Name:           qt5-qtjsbackend
 Summary:        Qt Javascript backend
-Version:        5.0.0~beta1
+Version:        5.0.0
 Release:        1%{%dist}
 Group:          Qt/Qt
 License:        LGPLv2.1 with exception or GPLv3
@@ -94,17 +94,17 @@ rm -rf %{buildroot}/%{_includedir}/qt5/Qt
 
 %files -n qt5-qtv8
 %defattr(-,root,root,-)
-%{_libdir}/libQtV8.so.5
-%{_libdir}/libQtV8.so.5.*
+%{_libdir}/libQt5V8.so.5
+%{_libdir}/libQt5V8.so.5.*
 
 
 %files -n qt5-qtv8-devel
 %defattr(-,root,root,-)
 %{_includedir}/qt5/QtV8/
-%{_libdir}/libQtV8.prl
-%{_libdir}/libQtV8.so
-%{_libdir}/pkgconfig/QtV8.pc
-%{_datadir}/qt5/mkspecs/modules/qt_v8.pri
+%{_libdir}/libQt5V8.prl
+%{_libdir}/libQt5V8.so
+%{_libdir}/pkgconfig/Qt5V8.pc
+%{_datadir}/qt5/mkspecs/modules/qt_lib_v8.pri
 
 
 #### No changelog section, separate $pkg.changes contains the history
